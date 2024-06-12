@@ -26,7 +26,7 @@ app.post(
     }
 
     try {
-      const tempFilePath = `temp/${file.originalname}`;
+      const tempFilePath = `${new Date().getTime()}_${file.originalname}`;
       await minioClient.putObject(
         "video-encoder-temp",
         tempFilePath,
@@ -42,4 +42,3 @@ app.post(
 app.listen(port, () => {
   console.log(`Listening on port ${port}...`);
 });
-
