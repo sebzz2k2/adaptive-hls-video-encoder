@@ -1,2 +1,5 @@
 /test-media
+.env
+
+node_modules/
 
