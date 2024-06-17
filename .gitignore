@@ -1,5 +1,7 @@
 /test-media
 .env
 
+final/
+temp/
 node_modules/
 

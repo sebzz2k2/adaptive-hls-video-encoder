@@ -5,7 +5,7 @@ services:
     restart: always
     ports:
       - '6379:6379'
-    command: redis-server --save 60 1 --loglevel warning --requirepass redis 
+    command: redis-server --save 60 1 --loglevel warning --requirepass redis --notify-keyspace-events KEA
     networks:
       - video_network
     volumes: 
