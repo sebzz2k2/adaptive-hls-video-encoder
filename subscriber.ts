@@ -1,6 +1,6 @@
 import redis from "redis";
 import * as Minio from "minio";
-import { readdir, readFile } from "node:fs/promises";
+import { rmdir, readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
 
 const getMinioClient = () => {
@@ -65,6 +65,9 @@ async function processMessage(message: string) {
     }
 
     await uploadFolder("final");
+
+    await rmdir("temp", { recursive: true });
+    await rmdir("final", { recursive: true });
   }
 
   await subscriber.disconnect();
