@@ -29,4 +29,48 @@ This document explains the process flow for uploading a video, creating an HLS s
    - The resulting HLS stream, which is a folder containing the segmented video files, is uploaded back to MinIO for storage.
 
 7. **Delete Key from Redis**
+
    - Once the HLS stream creation is completed, the associated key is deleted from Redis to maintain a clean and updated hash table.
+
+   ## How to run
+
+8. Clone the repository
+9. Open the terminal and navigate to the project directory and run the following command
+
+```bash
+docker compose up
+```
+
+3. Open another terminal and run the following command
+
+```bash
+bun install
+```
+
+4. Now run the following command
+
+```bash
+bun index.ts
+```
+
+5. Open another terminal and run the following command
+
+```bash
+bun subscriber.ts
+```
+
+## How to test
+
+1. Open the terminal and navigate to the project directory and run the following command
+
+```bash
+curl --request POST \
+  --url http://localhost:8080/upload \
+  --header 'content-type: multipart/form-data' \
+  --form file=@file
+```
+
+2. Open a browser and navigate to http://localhost:9001 and you will be prompted to enter minio credentials
+   - username: minio
+   - password: minio123
+3. your video will be uploaded to minio and the subscriber will create an HLS stream and upload it back to minio
