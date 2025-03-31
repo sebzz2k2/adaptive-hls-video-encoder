@@ -1,0 +1,10 @@
+FROM golang:1.21
+
+WORKDIR /app
+
+# Install Air for HMR
+RUN go install github.com/cosmtrek/air@latest
+
+COPY . .
+
+CMD ["air", "-c", ".air.toml"]

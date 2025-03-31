@@ -31,5 +31,14 @@ services:
     ports:
       - "6379:6379"
 
+    core:
+      build: ./core
+      container_name: core-worker
+      depends_on:
+        - redis
+      environment:
+        - REDIS_ADDR=redis:6379
+      restart: always
+
 volumes:
   postgres_data:

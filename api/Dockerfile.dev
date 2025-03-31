@@ -1,0 +1,9 @@
+FROM golang:1.21
+
+WORKDIR /app
+
+RUN go install github.com/cosmtrek/air@latest
+
+COPY . .
+
+CMD ["air", "-c", ".air.toml"]

@@ -1,0 +1,11 @@
+root = "."
+
+[build]
+  bin = "tmp/main"
+  cmd = "go build -o tmp/main ."
+  exclude_dir = ["tmp", "vendor"]
+  exclude_file = ["*.md"]
+
+[run]
+  cmd = "./tmp/main"
+  delay = 1000

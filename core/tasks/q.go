@@ -4,7 +4,7 @@ import (
 	"github.com/hibiken/asynq"
 )
 
-var RedisClient = asynq.RedisClientOpt{Addr: "localhost:6379"}
+var RedisClient = asynq.RedisClientOpt{Addr: "redis:6379"}
 
 func NewClient() *asynq.Client {
 	return asynq.NewClient(RedisClient)
