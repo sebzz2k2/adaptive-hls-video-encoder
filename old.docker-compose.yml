@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 60 1 --loglevel warning --requirepass redis --notify-keyspace-events KEA
+    networks:
+      - video_network
+    volumes: 
+      - video_redis_data:/data
+  minio:
+    image: minio/minio
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    networks:
+      - video_network
+    volumes:
+      - 'video_minio_data:/data'
+    environment:
+       MINIO_ROOT_USER: minio
+       MINIO_ROOT_PASSWORD: minio123 
+    command: server --console-address ":9001" /data
+volumes:
+  video_redis_data:
+  video_minio_data:
+networks:
+  video_network:
