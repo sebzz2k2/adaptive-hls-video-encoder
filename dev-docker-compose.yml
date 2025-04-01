@@ -21,6 +21,18 @@ services:
       - REDIS_ADDR=redis:6379
     restart: always
 
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: hls
+      POSTGRES_PASSWORD: nmkj
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
   api:
     build:
       context: ./api
@@ -31,7 +43,10 @@ services:
     depends_on:
       - core
     ports:
-      - "8080:8080"
+      - "3000:3000"
     environment:
       - REDIS_ADDR=redis:6379
     restart: always
+  
+volumes:
+  postgres_data:
