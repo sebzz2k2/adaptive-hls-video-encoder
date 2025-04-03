@@ -1,103 +1,89 @@
 import Image from "next/image";
+import { Search, ChevronUp, Play, Trash2, RefreshCw, Eye, X, ChevronRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import Navbar from "@/components/navbar";
+import { DataTable } from "@/components/data-table/table"
+import {  columns, DashboardCols} from "@/components/data-table/columns"
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  <>
+  <Navbar />
+  <Dashboard />
+  </>
+  );
+}
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+function Dashboard() {
+  const data : DashboardCols[]  = [
+    {
+      id: "1",
+      name: "Video 1",
+      size : 300,
+      uploadTime: "2023-10-01",
+      status: "processing",
+    },
+    {
+      id: "2",
+      name: "Video 2",
+      size :2024,
+      uploadTime: "2023-10-02",
+      status: "pending",
+    },
+    {
+      id: "3",
+      name: "Video 3",
+      size : 200,
+      uploadTime: "2023-10-03",
+      status: "success",
+    },
+    {
+      id : "4",
+      name: "Video 4",
+      size : 2024000,
+      uploadTime: "2023-10-04",
+      status: "failed",
+    },
+    {
+      id: "5",
+      name: "Video 5",
+      size: 500,
+      uploadTime: "2023-10-04",
+      status: "failed", 
+    }
+  ]
+  return (
+    <div className="min-h-screen bg-black text-white">
+
+      {/* Main Content */}
+      <main className="px-8 py-6">
+        <div className="">
+          {/* Dashboard Header */}
+          <div className="flex justify-between items-center mb-6">
+            <h1 className="text-2xl font-semibold">Dashboard</h1>
+            <Button>Upload Video</Button>
+          </div>
+
+          {/* Search Bar */}
+          <div className="mb-6 w-[20%]">
+            <Input type="text" placeholder="Search here.." className="bg-black border-gray-700 pl-3 pr-10 py-2 w-96" icon={<Search className="text-gray-400" size={20} />}/>
+          </div>
+
+          {/* Table */}
+          <DataTable columns={columns} data={data} /> 
+
+          {/* Pagination */}
+          <div className="flex justify-end items-center mt-4 text-sm">
+            <span className="mr-2">1</span>
+            <span className="mx-2 text-gray-400">2</span>
+            <span className="mx-2 text-gray-400">3...</span>
+            <span className="ml-2 flex items-center text-gray-400">
+              Next <ChevronRight size={16} />
+            </span>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
-  );
+  )
 }
